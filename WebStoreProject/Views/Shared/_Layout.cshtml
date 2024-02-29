@@ -1,0 +1,29 @@
+﻿@using WebStoreProject.Models
+@using WebStoreProject
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, WebStoreProject
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>@ViewBag.Title</title>
+	<partial name = "Partial/_Links"></partial>
+</head><!--/head-->
+
+<body>
+	
+	@await Html.PartialAsync("Partial/_Header")
+	
+	@RenderBody()
+
+	<partial Name="Partial/_Footer"></partial>
+	
+	<partial name="Partial/_Scripts"></partial>
+</body>
+</html>
