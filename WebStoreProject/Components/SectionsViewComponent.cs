@@ -14,7 +14,7 @@ namespace WebStoreProject.Components
 		{
 			var sections = _ProductData.GetSections();
 			var parent_sections = sections.Where(s => s.ParentId is null);
-			var parent_sections_views = sections.
+			var parent_sections_views = parent_sections.
 				Select(s => new SectionViewModel
 				{
 					Id = s.Id,
