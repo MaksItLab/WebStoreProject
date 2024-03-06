@@ -6,7 +6,7 @@ namespace WebStoreProject.Components
 {
 	public class BrandsViewComponent : ViewComponent
 	{
-		public readonly IProductData _ProductData;
+		private readonly IProductData _ProductData;
 		public BrandsViewComponent(IProductData ProductData) => _ProductData = ProductData;
 
 		public IViewComponentResult Invoke()
@@ -20,7 +20,6 @@ namespace WebStoreProject.Components
 			.Select(b => new BrandViewModel { 
 				Id = b.Id,
 				Name = b.Name,
-
 			});
 	}
 }

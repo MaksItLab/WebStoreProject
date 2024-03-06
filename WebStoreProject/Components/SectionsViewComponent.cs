@@ -7,7 +7,7 @@ namespace WebStoreProject.Components
 	
 	public class SectionsViewComponent : ViewComponent
 	{
-		public readonly IProductData _ProductData;
+		private readonly IProductData _ProductData;
         public SectionsViewComponent(IProductData ProductData) => _ProductData = ProductData;
 
         public IViewComponentResult Invoke()
