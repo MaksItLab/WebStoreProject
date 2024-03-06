@@ -18,6 +18,7 @@ public class Program
 		});
 
 		services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+		services.AddSingleton<IProductData, InMemoryProductData>();
 
 
 
