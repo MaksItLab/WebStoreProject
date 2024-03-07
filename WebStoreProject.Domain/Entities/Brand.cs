@@ -1,10 +1,17 @@
-﻿using WebStoreProject.Domain.Entities.Base;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
+using WebStoreProject.Domain.Entities.Base;
 using WebStoreProject.Domain.Entities.Base.Interfaces;
 
 namespace WebStoreProject.Domain.Entities
 {
+	[Table("Brand")]
+	[Index(nameof(Name), IsUnique = true)]
 	public class Brand : NamedEntity, IOrderedEntity
 	{
-		public int Order { get; set; }	
+		[Column("Order")]
+		public int Order { get; set; }
+
+		public ICollection<Product> Products { get; set; }
 	}
 }
