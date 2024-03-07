@@ -1,4 +1,5 @@
-﻿using WebStoreProject.Domain.Entities;
+﻿using WebStoreProject.Domain;
+using WebStoreProject.Domain.Entities;
 
 namespace WebStoreProject.Services.Interfaces
 {
@@ -6,5 +7,6 @@ namespace WebStoreProject.Services.Interfaces
 	{
 		IEnumerable<Section> GetSections ();
 		IEnumerable<Brand> GetBrands ();
+		IEnumerable<Product> GetProducts (ProductFilter productFilter = null);
 	}
 }
