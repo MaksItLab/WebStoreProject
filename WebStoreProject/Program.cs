@@ -1,4 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using WebStore.DAL.Context;
 using WebStoreProject.Infrastructure.Conventions;
 using WebStoreProject.Infrastructure.Middleware;
 using WebStoreProject.Services;
@@ -17,6 +18,8 @@ public class Program
 			opt.Conventions.Add(new TestConvention());
 		});
 
+		services.AddDbContext<WebStoreDB>(opt => 
+			opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 		services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
 		services.AddSingleton<IProductData, InMemoryProductData>();
 

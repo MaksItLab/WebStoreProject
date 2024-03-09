@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WebStoreProject.Domain.Entities.Base;
 using WebStoreProject.Domain.Entities.Base.Interfaces;
@@ -8,6 +9,8 @@ namespace WebStoreProject.Domain.Entities
 	[Index(nameof(Name), IsUnique = true)]
 	public class Section : NamedEntity, IOrderedEntity
 	{
+		
+		public int Number { get; set; }
 		public int Order { get; set; }
 		public int? ParentId { get; set; } = null;
 
