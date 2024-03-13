@@ -5,11 +5,11 @@ using WebStoreProject.Domain.Entities.Base.Interfaces;
 
 namespace WebStoreProject.Domain.Entities
 {
-	[Table("Brand")]
+	[Table("Brands")]
 	[Index(nameof(Name), IsUnique = true)]
 	public class Brand : NamedEntity, IOrderedEntity
 	{
-		[Column("Order")]
+		//[Column("Order")]
 		public int Order { get; set; }
 
 		public ICollection<Product> Products { get; set; }

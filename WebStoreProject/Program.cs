@@ -1,15 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using WebStore.DAL.Context;
 using WebStoreProject.Infrastructure.Conventions;
-using WebStoreProject.Infrastructure.Middleware;
+//using WebStoreProject.Infrastructure.Middleware;
 using WebStoreProject.Services;
+using WebStoreProject.Services.InSQL;
 using WebStoreProject.Services.Interfaces;
 
 namespace WebStoreProject;
 
 public class Program
 {
-	public static void Main(string[] args)
+	public static async Task Main(string[] args)
 	{
 		var builder = WebApplication.CreateBuilder(args);
 
@@ -20,13 +21,21 @@ public class Program
 
 		services.AddDbContext<WebStoreDB>(opt => 
 			opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
-		services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
-		services.AddSingleton<IProductData, InMemoryProductData>();
+		services.AddTransient<IDbinitializer, DbInitializer>();
 
+		services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+		//services.AddSingleton<IProductData, InMemoryProductData>();
+		services.AddScoped<IProductData, SqlProductData>();
+		
+		
 
 
 		var app = builder.Build();
 
+		await using (var scope = app.Services.CreateAsyncScope()) { 
+			var db_initializer = scope.ServiceProvider.GetRequiredService<IDbinitializer>();
+			await db_initializer.InitializeAsync(RemoveBefore: false);
+		}
 
 		if (app.Environment.IsDevelopment())
 		{
@@ -43,7 +52,7 @@ public class Program
 
 		app.UseWelcomePage("/welcome");
 
-		app.UseMiddleware<TestMiddleware>();
+		//app.UseMiddleware<TestMiddleware>();
 
 
 		app.MapGet("/hello/{name:alpha}", (string name) => $"Hello {name}!");

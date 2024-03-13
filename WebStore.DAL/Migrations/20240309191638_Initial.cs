@@ -9,7 +9,7 @@ namespace WebStore.DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Brand",
+                name: "Brands",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -62,7 +62,7 @@ namespace WebStore.DAL.Migrations
                     table.ForeignKey(
                         name: "FK_Products_Brand_BrandId",
                         column: x => x.BrandId,
-                        principalTable: "Brand",
+                        principalTable: "Brands",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -75,7 +75,7 @@ namespace WebStore.DAL.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Brand_Name",
-                table: "Brand",
+                table: "Brands",
                 column: "Name",
                 unique: true);
 
@@ -112,7 +112,7 @@ namespace WebStore.DAL.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Brand");
+                name: "Brands");
 
             migrationBuilder.DropTable(
                 name: "Sections");
